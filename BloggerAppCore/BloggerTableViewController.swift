@@ -11,32 +11,33 @@ import UIKit
 class BloggerTableViewController: UITableViewController {
     var array: [String] = []
     var titles: [String] = []
-
-
+    var urls:[String] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gettingData()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return titles.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = titles[indexPath.row]
-
+        
         // Configure the cell...
-
+        
         return cell
     }
     
@@ -60,7 +61,6 @@ class BloggerTableViewController: UITableViewController {
                                     let blogTitle = items?[n] as! NSDictionary
                                     self.titles.append(blogTitle["title"] as! String)
                                 }
-                                
                             }
                             self.tableView.reloadData()
                         }
@@ -74,8 +74,23 @@ class BloggerTableViewController: UITableViewController {
         }
         task.resume()
         
-        
     }
- 
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "segue", sender: self)
+    }
+    //takes the data passes it to the other view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "segue"){
+            let controller = segue.destination as? ViewController
+            let blogIndex = tableView.indexPathForSelectedRow?.row
+            controller?.selectedName = array[blogIndex!]
+            
+        }
+    }
+    
+    
+    
+    
+    
 }

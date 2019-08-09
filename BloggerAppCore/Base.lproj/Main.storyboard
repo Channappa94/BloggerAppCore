@@ -35,7 +35,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="aDV-HS-JEz"/>
                     <connections>
-                        <segue destination="yWh-Tu-z1t" kind="show" id="m0M-AL-bzN"/>
+                        <segue destination="yWh-Tu-z1t" kind="show" identifier="segue" id="m0M-AL-bzN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlT-hD-TGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -63,6 +63,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="x7v-z5-kgT"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="59A-qT-Sgz" id="Bfy-fN-Ksi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNC-3I-6Jb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

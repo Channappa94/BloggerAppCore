@@ -14,6 +14,7 @@
 		49C9108022FCA02100B8FCB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C9107F22FCA02100B8FCB6 /* Assets.xcassets */; };
 		49C9108322FCA02100B8FCB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C9108122FCA02100B8FCB6 /* LaunchScreen.storyboard */; };
 		49C9108B22FCA10E00B8FCB6 /* BloggerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9108A22FCA10E00B8FCB6 /* BloggerTableViewController.swift */; };
+		49C9108E22FCF0AD00B8FCB6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C9108D22FCF0AD00B8FCB6 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		49C9108222FCA02100B8FCB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49C9108422FCA02200B8FCB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49C9108A22FCA10E00B8FCB6 /* BloggerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggerTableViewController.swift; sourceTree = "<group>"; };
+		49C9108D22FCF0AD00B8FCB6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C9108E22FCF0AD00B8FCB6 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				49C9107422FCA01F00B8FCB6 /* BloggerAppCore */,
 				49C9107322FCA01F00B8FCB6 /* Products */,
+				49C9108C22FCF0AD00B8FCB6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				49C9107C22FCA01F00B8FCB6 /* BloggerAppCore.xcdatamodeld */,
 			);
 			path = BloggerAppCore;
+			sourceTree = "<group>";
+		};
+		49C9108C22FCF0AD00B8FCB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49C9108D22FCF0AD00B8FCB6 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
