@@ -11,10 +11,9 @@ import WebKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var webView: WKWebView!
     var selectedName: String = ""
-    var selected: String = ""
+    var label: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +22,7 @@ class ViewController: UIViewController {
         let url = NSURL(string: https)
         let urlrequest  = URLRequest(url: url! as URL)
         webView.load(urlrequest)
-        print(https)
     }
-    
     
 }
 

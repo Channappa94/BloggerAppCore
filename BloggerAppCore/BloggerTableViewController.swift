@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import CoreData
+
 
 class BloggerTableViewController: UITableViewController {
     var array: [String] = []
     var titles: [String] = []
     var urls:[String] = []
+    var savingdata: [NSManagedObject] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchingData()
         gettingData()
     }
     
@@ -35,8 +39,6 @@ class BloggerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = titles[indexPath.row]
-        
-        // Configure the cell...
         
         return cell
     }
@@ -60,8 +62,10 @@ class BloggerTableViewController: UITableViewController {
                                     print(self.array)
                                     let blogTitle = items?[n] as! NSDictionary
                                     self.titles.append(blogTitle["title"] as! String)
+                                    
                                 }
                             }
+                            self.save(itemTosave: self.titles)
                             self.tableView.reloadData()
                         }
                         
@@ -72,9 +76,10 @@ class BloggerTableViewController: UITableViewController {
             }
             
         }
-        task.resume()
         
+        task.resume()
     }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "segue", sender: self)
@@ -83,13 +88,51 @@ class BloggerTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "segue"){
             let controller = segue.destination as? ViewController
+            
             let blogIndex = tableView.indexPathForSelectedRow?.row
             controller?.selectedName = array[blogIndex!]
-            
+            controller!.label = titles[blogIndex!]
+            //print(titles)
         }
     }
     
     
+    
+    func save(itemTosave: [String]) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        // 1
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "SavingUrl",
+                                                in: managedContext)!
+        let person = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        person.setValue(itemTosave, forKeyPath: "name")
+        savingdata.append(person)
+        do {
+            try managedContext.save()
+            print(savingdata)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    
+    func fetchingData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        //Grabbing the xcode data model
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavingUrl")
+        do {
+            let person: [NSManagedObject] = try managedContext.fetch(fetchRequest)
+            print(person[0].value(forKeyPath: "name") as? String)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
     
     
     
