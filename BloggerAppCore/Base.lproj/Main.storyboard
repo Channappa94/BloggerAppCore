@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Blogger Table View Controller-->
+        <!--Blogger App-->
         <scene sceneID="ztc-AK-bKL">
             <objects>
                 <tableViewController id="zZh-0Q-qiH" customClass="BloggerTableViewController" customModule="BloggerAppCore" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,9 @@
                             <outlet property="delegate" destination="zZh-0Q-qiH" id="tAb-Ba-5nf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="aDV-HS-JEz"/>
+                    <navigationItem key="navigationItem" title="Blogger App" id="aDV-HS-JEz">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Kbd-c7-bHZ"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="yWh-Tu-z1t" kind="show" identifier="segue" id="m0M-AL-bzN"/>
                     </connections>

@@ -2,8 +2,9 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SavingUrl" representedClassName="SavingUrl" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="web" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SavingUrl" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="SavingUrl" positionX="-63" positionY="-18" width="128" height="75"/>
     </elements>
 </model>

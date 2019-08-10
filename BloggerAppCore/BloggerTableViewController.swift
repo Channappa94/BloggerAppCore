@@ -16,8 +16,7 @@ class BloggerTableViewController: UITableViewController {
     var urls:[String] = []
     var savingdata: [NSManagedObject] = []
     var datas: [String] = []
-
-    
+    var datase: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +40,6 @@ class BloggerTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        print(datas)
         cell.textLabel?.text = datas[indexPath.row]
         
         return cell
@@ -53,7 +51,6 @@ class BloggerTableViewController: UITableViewController {
             if error == nil{
                 if let unwrappedData = data{
                     do{
-                        //prints all the content of the arry inside the wesite
                         let jsonResult = try JSONSerialization.jsonObject(with: unwrappedData, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
                         let  items = jsonResult?["items"] as? NSArray
                         DispatchQueue.main.async {
@@ -68,7 +65,7 @@ class BloggerTableViewController: UITableViewController {
                                     
                                 }
                             }
-                            self.save(itemTosave: self.titles)
+                            self.save(itemTosave: self.titles, savingUrl: self.array)
                             self.tableView.reloadData()
                         }
                     }catch{
@@ -90,42 +87,43 @@ class BloggerTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "segue"){
             let controller = segue.destination as? ViewController
-            let control = segue.destination as? ViewController
             
             let blogIndex = tableView.indexPathForSelectedRow?.row
-            //controller?.selectedName = array[blogIndex!]
-            
             controller!.label = datas[blogIndex!]
-            //print(titles)
+            if array.count == 0{
+                print("nil")
+            }else{
+                controller?.selectedName = array[blogIndex!]
+            }
         }
+        
     }
     
     
     
-    func save(itemTosave: [String]) {
+    func save(itemTosave: [String], savingUrl: [String]) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        // 1
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "SavingUrl",
                                                 in: managedContext)!
         let person = NSManagedObject(entity: entity,
                                      insertInto: managedContext)
         person.setValue(itemTosave, forKeyPath: "name")
-       
-        //print(savingdata)
+        person.setValue(savingUrl, forKeyPath: "web")
         do {
             try managedContext.save()
-             savingdata.append(person)
-            print(savingdata)
+            savingdata.append(person)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
+    
+    
+    
     func fetchingData(){
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -136,10 +134,12 @@ class BloggerTableViewController: UITableViewController {
             savingdata = try managedContext.fetch(fetchRequest)
             for saving in savingdata{
                 datas = (saving.value(forKeyPath: "name") as? [String])!
-                
             }
+            
+            print(savingdata)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
 }
+
