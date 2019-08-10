@@ -10,7 +10,6 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var webView: WKWebView!
     var selectedName: String = ""
     var label: String = ""
@@ -22,6 +21,13 @@ class ViewController: UIViewController {
         let url = NSURL(string: https)
         let urlrequest  = URLRequest(url: url! as URL)
         webView.load(urlrequest)
+        if Reachability.isConnectedToNetwork(){
+            print("Internet Connection Available!")
+        }else{
+            print("Internet Connection not Available!")
+        }
+        
+
     }
     
 }

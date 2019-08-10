@@ -15,6 +15,7 @@
 		49C9108322FCA02100B8FCB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C9108122FCA02100B8FCB6 /* LaunchScreen.storyboard */; };
 		49C9108B22FCA10E00B8FCB6 /* BloggerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9108A22FCA10E00B8FCB6 /* BloggerTableViewController.swift */; };
 		49C9108E22FCF0AD00B8FCB6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C9108D22FCF0AD00B8FCB6 /* WebKit.framework */; };
+		49C9109022FE43B800B8FCB6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9108F22FE43B800B8FCB6 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		49C9108422FCA02200B8FCB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49C9108A22FCA10E00B8FCB6 /* BloggerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggerTableViewController.swift; sourceTree = "<group>"; };
 		49C9108D22FCF0AD00B8FCB6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		49C9108F22FE43B800B8FCB6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				49C9107522FCA01F00B8FCB6 /* AppDelegate.swift */,
 				49C9107722FCA01F00B8FCB6 /* ViewController.swift */,
 				49C9108A22FCA10E00B8FCB6 /* BloggerTableViewController.swift */,
+				49C9108F22FE43B800B8FCB6 /* Reachability.swift */,
 				49C9107922FCA01F00B8FCB6 /* Main.storyboard */,
 				49C9107F22FCA02100B8FCB6 /* Assets.xcassets */,
 				49C9108122FCA02100B8FCB6 /* LaunchScreen.storyboard */,
@@ -156,6 +159,7 @@
 				49C9108B22FCA10E00B8FCB6 /* BloggerTableViewController.swift in Sources */,
 				49C9107822FCA01F00B8FCB6 /* ViewController.swift in Sources */,
 				49C9107622FCA01F00B8FCB6 /* AppDelegate.swift in Sources */,
+				49C9109022FE43B800B8FCB6 /* Reachability.swift in Sources */,
 				49C9107E22FCA01F00B8FCB6 /* BloggerAppCore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

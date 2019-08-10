@@ -15,12 +15,15 @@ class BloggerTableViewController: UITableViewController {
     var titles: [String] = []
     var urls:[String] = []
     var savingdata: [NSManagedObject] = []
+    var datas: [String] = []
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchingData()
         gettingData()
+        fetchingData()
+        
     }
     
     // MARK: - Table view data source
@@ -32,13 +35,14 @@ class BloggerTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return titles.count
+        return datas.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row]
+        print(datas)
+        cell.textLabel?.text = datas[indexPath.row]
         
         return cell
     }
@@ -59,7 +63,6 @@ class BloggerTableViewController: UITableViewController {
                                     let insideITem = items?[n] as! NSDictionary
                                     //appeding all the url content and putting to the variabale
                                     self.array.append(insideITem["url"] as! String)
-                                    print(self.array)
                                     let blogTitle = items?[n] as! NSDictionary
                                     self.titles.append(blogTitle["title"] as! String)
                                     
@@ -68,7 +71,6 @@ class BloggerTableViewController: UITableViewController {
                             self.save(itemTosave: self.titles)
                             self.tableView.reloadData()
                         }
-                        
                     }catch{
                         print("error")
                     }
@@ -109,9 +111,11 @@ class BloggerTableViewController: UITableViewController {
         let person = NSManagedObject(entity: entity,
                                      insertInto: managedContext)
         person.setValue(itemTosave, forKeyPath: "name")
-        savingdata.append(person)
+       
+        //print(savingdata)
         do {
             try managedContext.save()
+             savingdata.append(person)
             print(savingdata)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
@@ -119,7 +123,9 @@ class BloggerTableViewController: UITableViewController {
     }
     
     
+    
     func fetchingData(){
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -127,13 +133,13 @@ class BloggerTableViewController: UITableViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavingUrl")
         do {
-            let person: [NSManagedObject] = try managedContext.fetch(fetchRequest)
-            print(person[0].value(forKeyPath: "name") as? String)
+            savingdata = try managedContext.fetch(fetchRequest)
+            for saving in savingdata{
+                datas = (saving.value(forKeyPath: "name") as? [String])!
+                
+            }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
-    
-    
-    
 }
