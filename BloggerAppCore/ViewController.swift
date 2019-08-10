@@ -13,21 +13,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     var selectedName: String = ""
     var label: String = ""
-
+    var lab: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let https = "https" + selectedName.dropFirst(4)
-        let url = NSURL(string: https)
-        let urlrequest  = URLRequest(url: url! as URL)
-        webView.load(urlrequest)
+        
         if Reachability.isConnectedToNetwork(){
             print("Internet Connection Available!")
+            let https = "https" + selectedName.dropFirst(4)
+            let url = NSURL(string: https)
+            let urlrequest  = URLRequest(url: url! as URL)
+            webView.load(urlrequest)
         }else{
             print("Internet Connection not Available!")
+            let url =  "No internet. Please check the internet connection on your laptop"
+            // let request = NSURLRequest(URL: url)
+            webView.loadHTMLString(url, baseURL: nil)
         }
         
-
+        
     }
     
 }

@@ -90,10 +90,12 @@ class BloggerTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "segue"){
             let controller = segue.destination as? ViewController
+            let control = segue.destination as? ViewController
             
             let blogIndex = tableView.indexPathForSelectedRow?.row
-            controller?.selectedName = array[blogIndex!]
-            controller!.label = titles[blogIndex!]
+            //controller?.selectedName = array[blogIndex!]
+            
+            controller!.label = datas[blogIndex!]
             //print(titles)
         }
     }
@@ -121,8 +123,6 @@ class BloggerTableViewController: UITableViewController {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
-    
     
     func fetchingData(){
         
